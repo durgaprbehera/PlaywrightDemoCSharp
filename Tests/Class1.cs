@@ -3,7 +3,7 @@ using PlaywrightDemoCSharp.Pages;
 using System.IO;
 using System.Reflection;
 
-namespace PlaywrightDemoCSharp;
+namespace PlaywrightDemoCSharp.Tests;
 
 public class Tests1
 {
@@ -31,20 +31,20 @@ public class Tests1
 
         await page.GotoAsync("https://selectors.webdriveruniversity.com/");
 
-        var isExist = await page.Locator("td:has-text(\"Thornton\")").IsVisibleAsync(new() { Timeout = 1 });
+        var isExist = await page.Locator("td:has-text(\"Thornton\")").IsVisibleAsync(new() { Timeout = 10_000 });
         Assert.IsTrue(isExist);
 
         var string1 = "the Bird";
         var string2 = "Larry";
 
         var loc = page.Locator("tr").Filter(new() { HasText = string1 }).
-            Filter(new() { HasText= string2 });
+            Filter(new() { HasText = string2 });
 
-        await loc.WaitForAsync(new() { Timeout=1000});
+        await loc.WaitForAsync(new() { Timeout = 1000 });
 
         var loc1 = loc.Locator("td:nth-child(4)");
 
-        Console.WriteLine("With td:nth-child:: "+ await loc1.TextContentAsync());
+        Console.WriteLine("With td:nth-child:: " + await loc1.TextContentAsync());
 
         foreach (var li in await loc1.AllTextContentsAsync())
         {
@@ -54,7 +54,7 @@ public class Tests1
         foreach (var li in await page.Locator("//tr").Filter(new() { HasText = "Thornton" }).
             Filter(new() { HasText = "Jacob" }).AllTextContentsAsync())
         {
-            Console.WriteLine("Test: "+li);
+            Console.WriteLine("Test: " + li);
         }
 
         Console.WriteLine(await page.Locator("table[class*=table] th").AllAsync());
@@ -67,7 +67,7 @@ public class Tests1
 
         foreach (var li in await page.Locator("h2+table[class*='table table'] th[scope=col]").AllTextContentsAsync())
         {
-            Console.WriteLine(li +": "+li.Equals("Last"));
+            Console.WriteLine(li + ": " + li.Equals("Last"));
         }
 
     }

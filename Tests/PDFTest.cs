@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace PlaywrightDemoCSharp;
+namespace PlaywrightDemoCSharp.Tests;
 
 public class PDFTest : PageTest
 {

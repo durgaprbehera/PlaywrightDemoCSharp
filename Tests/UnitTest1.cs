@@ -3,9 +3,9 @@ using PlaywrightDemoCSharp.Pages;
 using System.IO;
 using System.Reflection;
 
-namespace PlaywrightDemoCSharp;
+namespace PlaywrightDemoCSharp.Tests;
 
-public class Tests
+public class UnitTest
 {
     [SetUp]
     public void Setup()
@@ -35,7 +35,7 @@ public class Tests
 
         await loginPage.ClickLogin();
 
-        await loginPage.Login("admin","");
+        await loginPage.Login("admin", "");
 
         var isExist = await loginPage.VerifyLogin();
         Assert.IsTrue(isExist);
